@@ -54,6 +54,16 @@
         });
     });
 
+    router.route('/questions/random').get(function(req, res) {
+      // const rand = Math.random();
+      Question.aggregate([{$sample: {size: 1}}], function(err, q) {
+        if(err) {
+          res.send(err);
+        }
+        res.send(q[0]);
+      });
+    });
+
     router.route('/questions/:question_id')
     .get(function(req, res) {
         Question.findById(req.params.question_id, function(err, q) {
