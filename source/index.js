@@ -15,7 +15,7 @@
     // Connect to mongoose
     mongoose.connect('localhost:27017/quizapi');
 
-    const port = process.env.PORT || 8080;
+    const port = process.env.PORT || 8000;
 
     // Routes
     let router = express.Router();
