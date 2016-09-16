@@ -57,8 +57,11 @@
     router.route('/questions/delete')
     .post(function(req, res) {
       const id = req.body.id;
+      const parsedId = mongoose.Types.ObjectId.fromString(id);
       console.log('delete id', id);
-      Question.remove({_id: id}, function(err, q) {
+      console.log('parsed id', parsedId);
+
+      Question.remove({_id: parsedId}, function(err, q) {
         if(err) {
           res.send(err);
         } else {
