@@ -57,11 +57,13 @@
     router.route('/questions/delete')
     .post(function(req, res) {
       const id = req.body.id;
-      const parsedId = mongoose.Types.ObjectId.fromString(id);
       console.log('delete id', id);
-      console.log('parsed id', parsedId);
 
-      Question.remove({_id: parsedId}, function(err, q) {
+      if(id.match(/^[0-9a-fA-F]{24}$/)) {
+        res.json({message: 'Fail with id'});
+      }
+
+      Question.remove({_id: id}, function(err, q) {
         if(err) {
           res.send(err);
         } else {
