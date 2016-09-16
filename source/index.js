@@ -56,14 +56,7 @@
 
     router.route('/questions/delete')
     .post(function(req, res) {
-      const id = req.body.id;
-      console.log('delete id', id);
-
-      if(id.match(/^[0-9a-fA-F]{24}$/)) {
-        res.json({message: 'Fail with id'});
-      }
-
-      Question.remove({_id: id}, function(err, q) {
+      Question.remove({_id: req.body.id}, function(err, q) {
         if(err) {
           res.send(err);
         } else {
