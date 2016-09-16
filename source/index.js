@@ -57,11 +57,13 @@
     router.route('/questions/delete')
     .post(function(req, res) {
       const id = req.body.id;
+      console.log('delete id', id);
       Question.remove({_id: id}, function(err, q) {
         if(err) {
           res.send(err);
+        } else {
+          res.json({message: 'Question deleted'});
         }
-        res.json({message: 'Question deleted'});
       });
     });
 
